@@ -1,0 +1,16 @@
+records = LOAD 'Desktop/ratiooutput1'
+AS (Genre : chararray, Rating : double , MovieCount : int);
+
+sorted = order records by $1 DESC; 
+filtered = FILTER sorted BY MovieCount >= 1;
+final = limit sorted 5;
+
+
+anomalyTable = LOAD 'Desktop/output2'                               
+AS (Genre : chararray, anomaly : int); 
+
+anomalySorted = order anomalyTable by $1 DESC;
+anomalySortedTop = limit anomalySorted 5;
+ 
+
+
